@@ -1,0 +1,71 @@
+<script>    
+
+    // Check if the entire page is already loaded
+    $( document ).ready(function() {
+
+        // Set the interval for the window refresh
+        window.setInterval(function() {
+            // get the database information
+            getInfo();
+        }, 3000); // Check every 30 seconds (60000 milliseconds = 60 seconds = 1 minute)
+           
+        function getInfo() {
+
+            //make the ajax call
+            $.ajax({
+                url: 'getsales.php',
+                type: 'POST',
+                data: {check : 1},
+                success: function(data) {
+                    // If data is available then reflect it to the sales container
+                    document.getElementById("sales").innerHTML = data['sales'];    
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+    });    
+</script>
+
+//------------------------------
+
+<?php
+
+// Initialize the value to be returned to main page
+$value = '';
+
+// Validate whether there is a data that is posted
+if (isset($_POST['check'])) {
+
+    // Initialize connection
+    // $conn = new mysqli('localhost', 'sql_username','sql_password', 'database');
+    require_once('connect.php');
+
+
+    // Set the query String
+    $sql = include ('queryString.php');
+    
+    // Reading the Specific Record
+    $query = $success->query($sql);
+
+    // Check if record exist
+    if ($query->num_rows > 0) {
+        // Loop through the retrieve records
+        while($record = $query->fetch_assoc()) {
+
+            $value .= '
+            <div>Customer: '.$record["customer"].'  Transaction #: '.$record["transaction"].'  Amount : '.$record["amount"].'  </div>';                            
+        }
+    }
+}
+
+// Set the return value in json format
+$returnValue = json_encode(array('sales' => $value));
+
+// Setting the header information to json format
+header('Content-Type: application/json');
+
+// Display the information and return the control to the calling page
+echo $returnValue;
+?>   

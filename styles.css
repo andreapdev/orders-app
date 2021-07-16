@@ -1,0 +1,69 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+a{
+    text-decoration: none;
+}
+header{
+    background-color:lemonchiffon;
+    height: 4rem;
+    margin-bottom: 1.5rem;
+    vertical-align: middle;
+    line-height: 4rem;
+}
+
+h1{
+    text-align: center;
+    color:rgb(47, 61, 66);
+}
+.filter-form{
+    text-align: center;
+}
+.table{
+    width: 80%;
+    margin: 2rem auto;
+}
+.row{
+    width: 100%;
+}
+.cell{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+    text-align: start;
+    max-width: 16rem;
+    padding: 0.5rem;
+}
+
+.clickableRow{
+    background-color: lightblue;
+    border: none;
+}
+.clickableRow:hover{
+    background-color: rgb(146, 182, 194);
+}
+
+.popUp{
+    visibility: hidden;
+    z-index: 50;
+    position: absolute;
+    left: 25%;
+    top: 8rem;
+    background-color:lavenderblush;
+    max-width: 300rem;
+    max-height: 300rem;
+    padding: 1rem;
+    box-shadow: slategray 0.5rem 0.5rem 0.5rem;
+}
+
+.popUpitem{
+    display: flex;
+    word-wrap: break-word;
+    padding: 0.2rem 0;
+}
+
+footer {
+    background-color:lemonchiffon;
+    height: 4rem;
+    margin-top: 1.5rem;
+}
